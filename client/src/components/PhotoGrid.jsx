@@ -6,7 +6,7 @@ const PhotoGrid = ({ photos, onPhotoClick }) => {
       {photos.map((photo, index) => (
         <img
           key={index}
-          src={photo}
+          src={`http://localhost:5000${photo}`}
           alt={`Photo ${index + 1}`}
           className="w-full md:h-64 h-40 object-cover cursor-pointer"
           onClick={() => onPhotoClick(photo)}

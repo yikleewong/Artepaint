@@ -4,11 +4,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "cd client && npm run dev",
-    "start": "cd client && npm run dev",
-    "dev": "vite",
-    "build": "cd client && npm install && npm run build",
-    "server": "node server/server.js",
+    "build": "node server/server.js",
+    "client":"cd client && npm run dev",
+    "dev":"vite",
+    "server":"cd server && node server.js",
     "all": "npm-run-all --parallel client server"
   },
   "keywords": [],

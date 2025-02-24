@@ -11,8 +11,9 @@ const Photo = () => {
     // Fetch photos from the backend
     const fetchPhotos = async () => {
       try {
-        const response = await fetch('/api/photos');
+        const response = await fetch('http://localhost:5000/api/photos');
         const data = await response.json();
+        console.log('Fetched photos:', data);
         setPhotos(data);
       } catch (error) {
         console.error('Error fetching photos:', error);

@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { readdir } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -10,17 +11,33 @@ const port = 5000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
+const photosFolderPath = path.join(__dirname, 'photos');
+
+// Serve static files with specific CORS headers
+app.use('/photos', (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  next();
+}, express.static(photosFolderPath));
+
+// Configure CORS to allow requests from http://localhost:5173
+app.use(cors({
+  origin: 'http://localhost:5173'
+}));
 
 app.get('/api/photos', async (req, res) => {
   try {
-    const photosDir = path.join(__dirname, '..', 'client', 'public', 'photos');
-    const files = await readdir(photosDir);
+    const files = await readdir(photosFolderPath);
     const photos = files.map(file => `/photos/${file}`);
     res.json(photos);
   } catch (err) {
     res.status(500).json({ error: 'Unable to scan directory' });
   }
+});
+
+// Simple test endpoint
+app.get('/test-cors', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.json({ message: 'CORS is working!' });
 });
 
 app.listen(port, () => {

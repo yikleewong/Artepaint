@@ -46,7 +46,7 @@ const CloseNavbar = () => {
             </div>
         </nav>
         <div className='justify-center mx-auto '>
-        <Link to="/home" onClick={CloseNavbar}><img src={logo} className='h-32 w-auto'/></Link>
+        <Link to="/home" onClick={CloseNavbar}><img src={logo} className='h-32 w-auto' alt="logo"/></Link>
         </div>
 
     </div>
