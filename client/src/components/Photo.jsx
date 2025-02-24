@@ -11,7 +11,7 @@ const Photo = () => {
     // Fetch photos from the backend
     const fetchPhotos = async () => {
       try {
-        const response = await fetch('/api/photos');
+        const response = await fetch('https://artepaint-server.herokuapp.com/api/photos');
         const data = await response.json();
         setPhotos(data);
       } catch (error) {
