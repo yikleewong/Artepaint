@@ -5,8 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd client && npm run dev",
-    "server": "cd server && node server.js",
-    "start": "npm-run-all --parallel client server"
+    "start": "cd server && node server.js",
+    "build": "cd client && npm install && npm run build && cd .. && npm install && npm run start",
+    "all": "npm-run-all --parallel client server"
   },
   "keywords": [],
   "author": "",
